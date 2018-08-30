@@ -2,23 +2,26 @@ import React, { Component } from 'react'
 import './App.scss'
 import { Route, Link } from 'react-router-dom'
 
-const Dashboard = () => (
-  <div>
-    <h3>Dashboard</h3>
-    <p>This is separate route.</p>
-  </div>
-)
+import Header from './header/Header'
 
-const App = () => (
-  <div>
-    <nav>
-      <Link to="/dashboard">Dashboard</Link>
-    </nav>
-    <h1>Welcome to React!</h1>
-    <div>
-      <Route path="/dashboard" component={Dashboard}/>
-    </div>
-  </div>
-)
+class App extends Component {
+  constructor () {
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  render () {
+    return (
+      <React.Fragment>
+        <Route path='/' render={() => (
+          <Header user={this.state.currentUser} />
+        )} />
+      </React.Fragment>
+    )
+  }
+}
 
 export default App
