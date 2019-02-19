@@ -20,6 +20,16 @@ or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express
 1. `git add` and `git commit` your changes.
 1. Run the development server with `npm start`.
 
+## Deployment
+
+Before deploying, you first need to make sure the `homepage` key in your
+`package.json` is pointing to the correct value. It should be the url of your
+deployed application.
+
+To deploy you should first make sure you are on the `master` branch with a
+clean working directory, then you can run `npm run deploy` and wait to see if
+it runs successfully.
+
 ## About
 
 This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
