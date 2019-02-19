@@ -27,7 +27,10 @@ class ChangePassword extends Component {
       .then(handleErrors)
       .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
       .then(() => history.push('/'))
-      .catch(() => flash(messages.changePasswordFailure, 'flash-error'))
+      .catch(error => {
+        console.error(error)
+        flash(messages.changePasswordFailure, 'flash-error')
+      })
   }
 
   render () {
