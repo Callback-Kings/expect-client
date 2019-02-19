@@ -21,15 +21,15 @@ class ChangePassword extends Component {
   onChangePassword = event => {
     event.preventDefault()
 
-    const { flash, history, user } = this.props
+    const { alert, history, user } = this.props
 
     changePassword(this.state, user)
-      .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
+      .then(() => alert(messages.changePasswordSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ oldPassword: '', newPassword: '' })
-        flash(messages.changePasswordFailure, 'flash-error')
+        alert(messages.changePasswordFailure, 'danger')
       })
   }
 

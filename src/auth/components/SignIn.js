@@ -21,16 +21,16 @@ class SignIn extends Component {
   onSignIn = event => {
     event.preventDefault()
 
-    const { flash, history, setUser } = this.props
+    const { alert, history, setUser } = this.props
 
     signIn(this.state)
       .then(res => setUser(res.data.user))
-      .then(() => flash(messages.signInSuccess, 'flash-success'))
+      .then(() => alert(messages.signInSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
-        flash(messages.signInFailure, 'flash-error')
+        alert(messages.signInFailure, 'danger')
       })
   }
 
