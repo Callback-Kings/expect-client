@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 
 import { handleErrors, changePassword } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 
 class ChangePassword extends Component {
   constructor () {
@@ -11,7 +10,7 @@ class ChangePassword extends Component {
 
     this.state = {
       oldPassword: '',
-      newPassword: '',
+      newPassword: ''
     }
   }
 
@@ -22,7 +21,6 @@ class ChangePassword extends Component {
   changePassword = event => {
     event.preventDefault()
 
-    const { oldPassword, newPassword } = this.state
     const { flash, history, user } = this.props
 
     changePassword(this.state, user)

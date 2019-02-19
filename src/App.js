@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -29,7 +29,7 @@ class App extends Component {
 
     clearTimeout(this.messageTimeout)
 
-    this.messageTimeout = setTimeout(() => this.setState({flashMessage: null
+    this.messageTimeout = setTimeout(() => this.setState({ flashMessage: null
     }), 2000)
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
-        
+
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />

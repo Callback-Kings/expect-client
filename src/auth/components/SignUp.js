@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 
 import { handleErrors, signUp, signIn } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 
 class SignUp extends Component {
   constructor () {
@@ -23,7 +22,6 @@ class SignUp extends Component {
   signUp = event => {
     event.preventDefault()
 
-    const { email, password, passwordConfirmation} = this.state
     const { flash, history, setUser } = this.props
 
     signUp(this.state)
@@ -38,7 +36,7 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, password, passwordConfirmation} = this.state
+    const { email, password, passwordConfirmation } = this.state
 
     return (
       <form className='auth-form' onSubmit={this.signUp}>

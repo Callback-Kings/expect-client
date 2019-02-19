@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 
 import { signIn } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 
 class SignIn extends Component {
   constructor () {
@@ -11,7 +10,7 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: '',
+      password: ''
     }
   }
 
@@ -22,7 +21,6 @@ class SignIn extends Component {
   signIn = event => {
     event.preventDefault()
 
-    const { email, password } = this.state
     const { flash, history, setUser } = this.props
 
     signIn(this.state)
