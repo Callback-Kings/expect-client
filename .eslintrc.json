@@ -2,6 +2,11 @@
   "extends": ["plugin:react/recommended", "standard"],
   "root": true,
   "parser": "babel-eslint",
+  "settings": {
+    "react": {
+      "version": "16.4.2"
+    }
+  },
   "parserOptions": {
     "sourceType": "module"
   },
