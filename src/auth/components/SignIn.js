@@ -18,7 +18,7 @@ class SignIn extends Component {
     [event.target.name]: event.target.value
   })
 
-  signIn = event => {
+  onSignIn = event => {
     event.preventDefault()
 
     const { flash, history, setUser } = this.props
@@ -37,7 +37,7 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.signIn}>
+      <form className='auth-form' onSubmit={this.onSignIn}>
         <h3>Sign In</h3>
         <label htmlFor="email">Email</label>
         <input

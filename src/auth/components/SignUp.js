@@ -19,7 +19,7 @@ class SignUp extends Component {
     [event.target.name]: event.target.value
   })
 
-  signUp = event => {
+  onSignUp = event => {
     event.preventDefault()
 
     const { flash, history, setUser } = this.props
@@ -39,7 +39,7 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.signUp}>
+      <form className='auth-form' onSubmit={this.onSignUp}>
         <h3>Sign Up</h3>
 
         <label htmlFor="email">Email</label>
