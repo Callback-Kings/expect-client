@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { handleErrors, signUp, signIn } from '../api'
+import { signUp, signIn } from '../api'
 import messages from '../messages'
 
 class SignUp extends Component {
@@ -25,11 +25,8 @@ class SignUp extends Component {
     const { flash, history, setUser } = this.props
 
     signUp(this.state)
-      .then(handleErrors)
       .then(() => signIn(this.state))
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(res => setUser(res.user))
+      .then(res => setUser(res.data.user))
       .then(() => flash(messages.signUpSuccess, 'flash-success'))
       .then(() => history.push('/'))
       .catch(error => {

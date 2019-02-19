@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { handleErrors, changePassword } from '../api'
+import { changePassword } from '../api'
 import messages from '../messages'
 
 class ChangePassword extends Component {
@@ -24,7 +24,6 @@ class ChangePassword extends Component {
     const { flash, history, user } = this.props
 
     changePassword(this.state, user)
-      .then(handleErrors)
       .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
       .then(() => history.push('/'))
       .catch(error => {
