@@ -31,6 +31,7 @@ class SignUp extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
+        this.setState({ email: '', password: '', passwordConfirmation: '' })
         flash(messages.signUpFailure, 'flash-error')
       })
   }

@@ -29,6 +29,7 @@ class SignIn extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
+        this.setState({ email: '', password: '' })
         flash(messages.signInFailure, 'flash-error')
       })
   }

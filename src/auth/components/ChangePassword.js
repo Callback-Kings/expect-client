@@ -28,6 +28,7 @@ class ChangePassword extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
+        this.setState({ oldPassword: '', newPassword: '' })
         flash(messages.changePasswordFailure, 'flash-error')
       })
   }
