@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { signOut } from '../api'
@@ -6,10 +6,10 @@ import messages from '../messages'
 
 class SignOut extends Component {
   componentDidMount () {
-    const { flash, history, clearUser, user } = this.props
+    const { alert, history, clearUser, user } = this.props
 
     signOut(user)
-      .finally(() => flash(messages.signOutSuccess, 'flash-success'))
+      .finally(() => alert(messages.signOutSuccess, 'success'))
       .finally(() => history.push('/'))
       .finally(() => clearUser())
   }

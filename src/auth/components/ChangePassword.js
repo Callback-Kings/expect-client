@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { handleErrors, changePassword } from '../api'
+import { changePassword } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 
 class ChangePassword extends Component {
   constructor () {
@@ -11,7 +10,7 @@ class ChangePassword extends Component {
 
     this.state = {
       oldPassword: '',
-      newPassword: '',
+      newPassword: ''
     }
   }
 
@@ -19,24 +18,26 @@ class ChangePassword extends Component {
     [event.target.name]: event.target.value
   })
 
-  changePassword = event => {
+  onChangePassword = event => {
     event.preventDefault()
 
-    const { oldPassword, newPassword } = this.state
-    const { flash, history, user } = this.props
+    const { alert, history, user } = this.props
 
     changePassword(this.state, user)
-      .then(handleErrors)
-      .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
+      .then(() => alert(messages.changePasswordSuccess, 'success'))
       .then(() => history.push('/'))
-      .catch(() => flash(messages.changePasswordFailure, 'flash-error'))
+      .catch(error => {
+        console.error(error)
+        this.setState({ oldPassword: '', newPassword: '' })
+        alert(messages.changePasswordFailure, 'danger')
+      })
   }
 
   render () {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.changePassword}>
+      <form className='auth-form' onSubmit={this.onChangePassword}>
         <h3>Change Password</h3>
 
         <label htmlFor="oldpw">Old Password</label>

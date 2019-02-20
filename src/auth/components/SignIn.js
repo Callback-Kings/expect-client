@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 
 import { signIn } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 
 class SignIn extends Component {
   constructor () {
@@ -11,7 +10,7 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: '',
+      password: ''
     }
   }
 
@@ -19,26 +18,27 @@ class SignIn extends Component {
     [event.target.name]: event.target.value
   })
 
-  signIn = event => {
+  onSignIn = event => {
     event.preventDefault()
 
-    const { email, password } = this.state
-    const { flash, history, setUser } = this.props
+    const { alert, history, setUser } = this.props
 
     signIn(this.state)
-      .then(res => res.ok ? res : new Error())
-      .then(res => res.json())
-      .then(res => setUser(res.user))
-      .then(() => flash(messages.signInSuccess, 'flash-success'))
+      .then(res => setUser(res.data.user))
+      .then(() => alert(messages.signInSuccess, 'success'))
       .then(() => history.push('/'))
-      .catch(() => flash(messages.signInFailure, 'flash-error'))
+      .catch(error => {
+        console.error(error)
+        this.setState({ email: '', password: '' })
+        alert(messages.signInFailure, 'danger')
+      })
   }
 
   render () {
     const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.signIn}>
+      <form className='auth-form' onSubmit={this.onSignIn}>
         <h3>Sign In</h3>
         <label htmlFor="email">Email</label>
         <input

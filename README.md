@@ -9,7 +9,7 @@ or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express
 ## Installation
 
 1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/ember-auth-template-master.zip`).
+1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-master.zip`).
 1. Move into the new project and `git init`.
 1. Empty [`README.md`](README.md) and fill with your own content.
 1. Replace `ga-wdi-boston.react-auth-template` in `package.json` with your
@@ -19,6 +19,16 @@ or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express
 1. Install dependencies with `npm install`.
 1. `git add` and `git commit` your changes.
 1. Run the development server with `npm start`.
+
+## Deployment
+
+Before deploying, you first need to make sure the `homepage` key in your
+`package.json` is pointing to the correct value. It should be the url of your
+deployed application.
+
+To deploy you should first make sure you are on the `master` branch with a
+clean working directory, then you can run `npm run deploy` and wait to see if
+it runs successfully.
 
 ## About
 
@@ -90,8 +100,20 @@ this file will determine whether you're in a production or development
 environment and choose an API URL accordingly. Don't forget to replace the
 `production` URL with your deployed API's URL.
 
+## Tasks
+
+Developers should run these often!
+
+- `npm run nag`: runs code quality analysis tools on your code and complains.
+- `npm run make-standard`: reformats all your code in the JavaScript Standard
+  Style.
+- `npm run start`: generates bundles, watches, and livereloads.
+- `npm run build`: place bundled styles and scripts where `index.html` can find
+    them
+- `npm run deploy`: builds and deploys master branch
+
 ## [License](LICENSE)
 
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
+1. All content is licensed under a CC­BY­NC­SA 4.0 license.
+1. All software code is licensed under GNU GPLv3. For commercial use or
     alternative licensing, please contact legal@ga.co.

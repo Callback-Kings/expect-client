@@ -10,7 +10,6 @@ const AuthenticatedRoute = ({
   render,
   ...rest
 }) => {
-
   // if props include a `user` object and a `render` then create route with `render`
   if (user && render) {
     return <Route {...rest} render={render} />
