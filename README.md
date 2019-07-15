@@ -12,7 +12,7 @@ or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express
 1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-master.zip`).
 1. Move into the new project and `git init`.
 1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `ga-wdi-boston.react-auth-template` in `package.json` with your
+1. Replace `react-auth-template` in `package.json` with your
    projects name.
 1. Replace the `"homepage"` field in `package.json` with your (public) Github
    account name and repository name.
@@ -50,14 +50,19 @@ messages, etc.
 Currently, the top-level `App` component stores the currently authenticated
 user in state, as well as data related to the flash messages. `App` renders the
 `Header` component, and a list of routes, each of which render a component from
-`src/auth/components`. The `auth` directory has two non-component files, `api`
-and `messages`, which contain all the needed `fetch` calls, and messages to
-display when API calls succeed or fail, respectively.
+`src/components`. The `src/api` directory has a component file, `auth.js`, which
+contain all the needed `axios` calls pertaining to authentication.
 
-We recommend following this pattern in your app. For instance, if you are making
-an app that keeps track of books, you might want a `books` directory next to
-`auth`, which contains its own `api` and `messages` files, as well as a
-`components` directory.
+You can follow this pattern in your app as well. For instance, if you are making
+an app that keeps track of books, you might want a `src/api/books.js`, which
+contains its own `axios` call pertaining to your books resource CRUD actions.
+Using a separate directory within `components` for each individual component you
+add makes it easy to locate and update components and has the added benefit of
+making it easy to create custom styles that apply to that specific component.
+To apply component specific styles, add a file to the component's directory such
+as `ComponentName.scss` and then import it directly into the component with
+`import './ComponentName.scss'`.  This will keep your styles modularized and
+make it easier to make changes at the component level.
 
 ## Features
 
@@ -68,33 +73,38 @@ user to be authenticated before visiting. This component lives in
 `src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
 It's a thin wrapper around React Router's `<Route />` component. The only
 difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **If you want to use
-it, you must pass it the currently authenticated as a prop!**
+it will render a `<Redirect />` that takes the user to `/`. **To use
+it, you must pass it the user as a prop!**
 
 It supports both the `component=` and `render=` attributes, but like `<Route />`
 it will not forward props to the component if you use `component=`.
 
-### Flash Messages
+### `<AutoAlertDismiss />` Component
 
-The `App` component has a rudimentary version of flash messages. To use it,
-pass `this.flash` into a subcomponent of `App` as a prop and call it from there.
-It expects two arguments: a message to display, and a message type, which is one
-of `'flash-success'`, `'flash-warning'`, and `'flash-error'` which make the
-message green, yellow, and red, respectively. You must pass one of these types.
-You can add more types by adding more CSS rules in `App.scss`.
+This template also already contains a component that displays user messages.
+Messages are configurable via redux actions.  This component can be found in
+`src/components/AutoAlertDismiss/AutoAlertDismiss.js`. **There is no need to add
+this component to your app. It is already required in `App`.**  A single
+component instance is used to manage all alerts application-wide.
 
-In the auth components, flash messages are used in conjunction with the
- `auth/messages` file to select from a list of predefined success/failure
- messages. To undertand how to do this, look at the definition of `flash` in
- `App.js`, the `signUp` method in `auth/components/SignUp.js`, and the
- `auth/messages.js` file.
+The alert can be used by passing the alert method to a rendered route.  The
+alert method expects an object with a message and a type property.
 
- To change the duration of the message, replace `2000` with a value of your
- choice (in milliseconds) in the `flash` method definition in `App.js`.
+Use this component in conjunction with the `messages.js` file in the same
+directory to create and manage all of your application messages in one place.
 
- ### `src/apiConfig.js`
+The type property must be a Bootstrap alert type, as this component is merely a
+wrapper around the [react-bootstrap Alert
+component](https://react-bootstrap.github.io/components/alerts/).  The types it
+will accept are: 'primary', 'secondary', 'success', 'danger', 'warning', 'info',
+'light', and 'dark'.
 
- Just like in
+ To change the duration of the message, replace `5000` with a value of your
+ choice (in milliseconds) in this component's `componentDidMount` method.
+
+### `src/apiConfig.js`
+
+Just like in
 [browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
 this file will determine whether you're in a production or development
 environment and choose an API URL accordingly. Don't forget to replace the
