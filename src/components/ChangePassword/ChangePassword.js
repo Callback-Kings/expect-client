@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { changePassword } from '../api'
-import messages from '../messages'
+import { changePassword } from '../../api/auth'
+import messages from '../AutoDismissAlert/messages'
 
 class ChangePassword extends Component {
   constructor () {

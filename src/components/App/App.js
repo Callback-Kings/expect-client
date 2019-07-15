@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import './App.scss'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
-import Header from './header/Header'
-import SignUp from './auth/components/SignUp'
-import SignIn from './auth/components/SignIn'
-import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
+import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
+import Header from '../Header/Header'
+import SignUp from '../SignUp/SignUp'
+import SignIn from '../SignIn/SignIn'
+import SignOut from '../SignOut/SignOut'
+import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Alert from 'react-bootstrap/Alert'
 
