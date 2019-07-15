@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
+import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
-
-import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
   constructor () {
@@ -35,11 +34,10 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
+          <AutoDismissAlert
+            key={index}
+            alert={alert}
+          />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
