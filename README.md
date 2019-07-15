@@ -47,11 +47,11 @@ messages, etc.
 
 ## Structure
 
-Currently, the top-level `App` component stores the currently authenticated
+The top-level `App` component stores the currently authenticated
 user in state, as well as data related to the flash messages. `App` renders the
 `Header` component, and a list of routes, each of which render a component from
 `src/components`. The `src/api` directory has a component file, `auth.js`, which
-contain all the needed `axios` calls pertaining to authentication.
+contains all the needed `axios` calls pertaining to authentication.
 
 You can follow this pattern in your app as well. For instance, if you are making
 an app that keeps track of books, you might want a `src/api/books.js`, which
