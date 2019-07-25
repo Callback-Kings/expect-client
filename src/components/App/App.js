@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import './App.scss'
+import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
-import Header from './header/Header'
-import SignUp from './auth/components/SignUp'
-import SignIn from './auth/components/SignIn'
-import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
-
-import Alert from 'react-bootstrap/Alert'
+import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
+import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
+import Header from '../Header/Header'
+import SignUp from '../SignUp/SignUp'
+import SignIn from '../SignIn/SignIn'
+import SignOut from '../SignOut/SignOut'
+import ChangePassword from '../ChangePassword/ChangePassword'
 
 class App extends Component {
   constructor () {
@@ -25,22 +23,23 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+  alert = ({ heading, message, variant }) => {
+    this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
 
   render () {
     const { alerts, user } = this.state
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
+          <AutoDismissAlert
+            key={index}
+            heading={alert.heading}
+            variant={alert.variant}
+            message={alert.message}
+          />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
@@ -56,7 +55,7 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
         </main>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
