@@ -23,8 +23,8 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+  alert = ({ heading, message, variant }) => {
+    this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
 
   render () {
@@ -36,7 +36,9 @@ class App extends Component {
         {alerts.map((alert, index) => (
           <AutoDismissAlert
             key={index}
-            alert={alert}
+            heading={alert.heading}
+            variant={alert.variant}
+            message={alert.message}
           />
         ))}
         <main className="container">

@@ -27,12 +27,20 @@ class ChangePassword extends Component {
     const { alert, history, user } = this.props
 
     changePassword(this.state, user)
-      .then(() => alert(messages.changePasswordSuccess, 'success'))
+      .then(() => alert({
+        heading: 'Change Password Success',
+        message: messages.changePasswordSuccess,
+        variant: 'success'
+      }))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ oldPassword: '', newPassword: '' })
-        alert(messages.changePasswordFailure, 'danger')
+        alert({
+          heading: 'Change Password Failed',
+          message: messages.changePasswordFailure,
+          variant: 'danger'
+        })
       })
   }
 

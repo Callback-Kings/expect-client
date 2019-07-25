@@ -25,19 +25,19 @@ class AutoDismissAlert extends React.Component {
   handleClose = () => this.setState({ show: false })
 
   render () {
-    const { alert } = this.props
+    const { variant, heading, message } = this.props
     return (
       <Alert
         dismissible
         show={this.state.show}
-        variant={alert.type}
+        variant={variant}
         onClose={this.handleClose}
       >
         <div className="container">
           <Alert.Heading>
-            {alert.heading}
+            {heading}
           </Alert.Heading>
-          <p className="alert-body">{alert.message}</p>
+          <p className="alert-body">{message}</p>
         </div>
       </Alert>
     )
