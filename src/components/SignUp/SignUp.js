@@ -25,12 +25,12 @@ class SignUp extends Component {
   onSignUp = event => {
     event.preventDefault()
 
-    const { alert, history, setUser } = this.props
+    const { msgAlert, history, setUser } = this.props
 
     signUp(this.state)
       .then(() => signIn(this.state))
       .then(res => setUser(res.data.user))
-      .then(() => alert({
+      .then(() => msgAlert({
         heading: 'Sign Up Success',
         message: messages.signUpSuccess,
         variant: 'success'
@@ -38,7 +38,7 @@ class SignUp extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         this.setState({ email: '', password: '', passwordConfirmation: '' })
-        alert({
+        msgAlert({
           heading: 'Sign Up Failed with error: ' + error.message,
           message: messages.signUpFailure,
           variant: 'danger'
