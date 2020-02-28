@@ -88,12 +88,12 @@ this component to your app. It is already required in `App`.**  A single
 component instance is used to manage all alerts application-wide.
 
 The alert can be used by passing the `alertMsg` method to a rendered route.  The
-`alertMsg` method expects an object with a message and a type property.
+`alertMsg` method expects an object with a `heading`, `message`, and a `variant` property.
 
 Use this component in conjunction with the `messages.js` file in the same
 directory to create and manage all of your application messages in one place.
 
-The type property must be a Bootstrap alert type, as this component is merely a
+The `variant` property must be a Bootstrap alert variant, as this component is merely a
 wrapper around the [react-bootstrap Alert
 component](https://react-bootstrap.github.io/components/alerts/).  The types it
 will accept are: 'primary', 'secondary', 'success', 'danger', 'warning', 'info',
