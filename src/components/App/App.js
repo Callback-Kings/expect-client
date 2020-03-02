@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      msgAlerts: []
     }
   }
 
@@ -23,36 +23,36 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = ({ heading, message, variant }) => {
-    this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
+  msgAlert = ({ heading, message, variant }) => {
+    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { msgAlerts, user } = this.state
 
     return (
       <Fragment>
         <Header user={user} />
-        {alerts.map((alert, index) => (
+        {msgAlerts.map((msgAlert, index) => (
           <AutoDismissAlert
             key={index}
-            heading={alert.heading}
-            variant={alert.variant}
-            message={alert.message}
+            heading={msgAlert.heading}
+            variant={msgAlert.variant}
+            message={msgAlert.message}
           />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
+            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
-            <SignIn alert={this.alert} setUser={this.setUser} />
+            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+            <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
+            <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
