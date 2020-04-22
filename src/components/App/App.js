@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, createRef } from 'react'
 import { Route } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -12,11 +13,15 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 class App extends Component {
   constructor () {
     super()
-
     this.state = {
       user: null,
       msgAlerts: []
     }
+    this.msgAlertRef = createRef()
+  }
+
+  componentDidUpdate = () => {
+    this.msgAlertRef.current = this.state.msgAlerts
   }
 
   setUser = user => this.setState({ user })
@@ -24,7 +29,14 @@ class App extends Component {
   clearUser = () => this.setState({ user: null })
 
   msgAlert = ({ heading, message, variant }) => {
-    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
+    const id = uuid()
+    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant, id }] })
+  }
+
+  deleteAlert = (id) => {
+    const msgAlertRef = this.msgAlertRef.current
+    const tmp = msgAlertRef.filter(msg => msg.id !== id)
+    this.setState({ msgAlerts: tmp })
   }
 
   render () {
@@ -39,6 +51,8 @@ class App extends Component {
             heading={msgAlert.heading}
             variant={msgAlert.variant}
             message={msgAlert.message}
+            id={msgAlert.id}
+            deleteAlert={this.deleteAlert}
           />
         ))}
         <main className="container">

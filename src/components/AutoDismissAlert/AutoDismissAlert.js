@@ -6,20 +6,15 @@ import './AutoDismissAlert.scss'
 class AutoDismissAlert extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       show: true
     }
   }
-
   componentDidMount () {
-    this.timer = setInterval(() => {
-      this.setState({ show: false })
+    const { deleteAlert, id } = this.props
+    setTimeout(() => {
+      deleteAlert(id)
     }, 5000)
-  }
-
-  componentWillUnmount () {
-    clearInterval(this.timer)
   }
 
   handleClose = () => this.setState({ show: false })
