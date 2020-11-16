@@ -128,6 +128,66 @@ this file will determine whether you're in a production or development
 environment and choose an API URL accordingly. Don't forget to replace the
 `production` URL with your deployed API's URL.
 
+### Bootstrap
+
+This template includes two different implementations of the classic Bootstrap
+library we know and love.
+
+#### `bootstrap`
+
+The first implementation of Bootstrap comes from the `bootstrap` npm package,
+and provides all of the normal Bootstrap classes and styling we were able to
+use with the `browser-template`. This package is included in the
+`src/index.scss` file at the very top of the file. That means JSX in this
+template can utilize Bootstrap classes like `btn`, `container`, `row`, etc.
+
+See an example below:
+
+```jsx
+import React from 'react'
+
+const AboutPage = () => (
+  <div className="card">
+    <div className="card-body">
+      <h1 className="card-title">About Page</h1>
+      <p className="card-text">There is a Bootstrap card on this page!</p>
+    </div>
+  </div>
+)
+
+export default AboutPage
+```
+
+> Note: Remember to use `className` not `class` in your JSX!
+
+#### `react-bootstrap`
+
+In addition to the classic Bootstrap classes we can plug into our JSX, this
+template also comes with a special package called [`react-bootstrap`](https://react-bootstrap.github.io/).
+This package allows us to use special React components that have been pre-built
+according to the Bootstrap library.
+
+Import components from the `react-bootstrap` library, then use them just like
+regular components in your JSX!
+
+See an example below:
+
+```jsx
+import React from 'react'
+import Card from 'react-bootstrap/Card'
+
+const AboutPage = () => (
+  <Card>
+    <Card.Body>
+      <Card.Title>The About Page</Card.Title>
+      <Card.Text>There is a Bootstrap card on this page!</Card.Text>
+    </Card.Body>
+  </Card>
+)
+
+export default AboutPage
+```
+
 ## Tasks
 
 Developers should run these often!
