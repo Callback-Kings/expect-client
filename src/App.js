@@ -31,7 +31,9 @@ class App extends Component {
 
   msgAlert = ({ heading, message, variant }) => {
     const id = uuid()
-    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant, id }] })
+    this.setState((state) => {
+      return { msgAlerts: [...state.msgAlerts, { heading, message, variant, id }] }
+    })
   }
 
   render () {
