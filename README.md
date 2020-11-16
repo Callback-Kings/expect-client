@@ -64,6 +64,24 @@ as `ComponentName.scss` and then import it directly into the component with
 `import './ComponentName.scss'`.  This will keep your styles modularized and
 make it easier to make changes at the component level.
 
+### Included Routes
+
+This template comes with a handful of front-end routes that display
+different components for user actions.
+
+| Endpoint         | Component | `AuthenticatedRoute`? |
+|------------------|-------------------|-------|
+| `/sign-up`       | `SignUp`    | No |
+| `/sign-in`       | `SignIn`    | No |
+| `/change-password` | `ChangePassword`  | Yes |
+| `/sign-out`        | `SignOut`   | Yes |
+
+There is no HTTP verb listed because these are all front-end routes handled by
+React. Some of these routes should not be available unless a user is signed in,
+so they will use the `AuthenticatedRoute` component instead of the regular
+`Route`. This custom component is provided as part of the template, and is not
+a part of the React library (see more below).
+
 ## Features
 
 ### `<AuthenticatedRoute />`
