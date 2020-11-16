@@ -1,4 +1,4 @@
-import React, { Component, Fragment, createRef } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -17,26 +17,21 @@ class App extends Component {
       user: null,
       msgAlerts: []
     }
-    this.msgAlertRef = createRef()
-  }
-
-  componentDidUpdate = () => {
-    this.msgAlertRef.current = this.state.msgAlerts
   }
 
   setUser = user => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
 
+  deleteAlert = (id) => {
+    this.setState((state) => {
+      return { msgAlerts: state.msgAlerts.filter(msg => msg.id !== id) }
+    })
+  }
+
   msgAlert = ({ heading, message, variant }) => {
     const id = uuid()
     this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant, id }] })
-  }
-
-  deleteAlert = (id) => {
-    const msgAlertRef = this.msgAlertRef.current
-    const tmp = msgAlertRef.filter(msg => msg.id !== id)
-    this.setState({ msgAlerts: tmp })
   }
 
   render () {
