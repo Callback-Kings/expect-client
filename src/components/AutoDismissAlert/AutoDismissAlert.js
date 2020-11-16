@@ -14,7 +14,6 @@ class AutoDismissAlert extends React.Component {
 
   componentDidMount () {
     this.timeout = setTimeout(() => {
-      console.log('time to CLOSE')
       this.handleClose()
     }, 5000)
   }
