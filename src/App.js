@@ -11,8 +11,8 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 
 class App extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       user: null,
       msgAlerts: []
@@ -42,9 +42,9 @@ class App extends Component {
     return (
       <Fragment>
         <Header user={user} />
-        {msgAlerts.map((msgAlert, index) => (
+        {msgAlerts.map(msgAlert => (
           <AutoDismissAlert
-            key={index}
+            key={msgAlert.id}
             heading={msgAlert.heading}
             variant={msgAlert.variant}
             message={msgAlert.message}
