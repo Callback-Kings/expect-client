@@ -97,11 +97,11 @@ it, you must pass it the user as a prop!**
 It supports both the `component=` and `render=` attributes, but like `<Route />`
 it will not forward props to the component if you use `component=`.
 
-### `<AutoAlertDismiss />` Component
+### `<AutoDismissAlert />` Component
 
 This template also already contains a component that displays user messages.
 Messages are configurable via redux actions.  This component can be found in
-`src/components/AutoAlertDismiss/AutoAlertDismiss.js`. **There is no need to add
+`src/components/AutoDismissAlert/AutoDismissAlert.js`. **There is no need to add
 this component to your app. It is already required in `App`.**  A single
 component instance is used to manage all alerts application-wide.
 
