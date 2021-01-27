@@ -8,6 +8,8 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+// import { withRouter } from 'react-router-dom'
+// import { createPurchase } from '../../api/purchase'
 
 class Tour extends Component {
   // Ad a constructor to initialize our movie state
@@ -30,6 +32,13 @@ class Tour extends Component {
       return { liked: !state.liked }
     })
   }
+
+  // handleSubmit = (event) => {
+  //   event.preventDefault()
+  //   axios.post(`${apiUrl}`)
+  //     .then(res => console.log(res))
+  //     .catch(console.error)
+  // }
 
   purchaseTour = () => {
     this.setState((state, props) => {
@@ -61,9 +70,9 @@ class Tour extends Component {
                   {this.state.liked ? 'Unlike' : 'Like'}
                 </Button>
                 <Button
-                  onClick={this.purchaseTour}
+                  type="submit"
                   variant="primary">
-                  {this.state.purchased ? 'Booked' : 'Book Now'}
+                  Book Now
                 </Button>
               </Card.Body>
             </Card>
