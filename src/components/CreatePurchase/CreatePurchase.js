@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createPurchase, signIn } from '../../api/purchase'
-import messages from '../AutoDismissAlert/messages'
+import { makePurchase } from '../../api/purchase'
 
-import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 class CreatePurchase extends Component {
@@ -12,92 +11,50 @@ class CreatePurchase extends Component {
     super(props)
 
     this.state = {
-      location: '',
-      date: '',
-      price: ''
+      purchased: false
     }
   }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-  })
-
-  onCreatePurchase = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
-
-    const { msgAlert, history } = this.props
-
-    createPurchase(this.state)
-      .then(() => signIn(this.state))
-      // .then(res => setUser(res.data.user))
-      .then(() => msgAlert({
-        heading: 'Purchase successful.',
-        message: messages.createPurchaseSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/'))
-      .catch(error => {
-        this.setState({ location: '', date: '', price: '', comment: '' })
-        msgAlert({
-          heading: 'Purchase Failed with error: ' + error.message,
-          message: messages.createPurchaseFailure,
-          variant: 'danger'
-        })
-      })
+    makePurchase()
+      .then(res => console.log(res))
+      .catch(console.error)
   }
 
-  render () {
-    const { location, date, price } = this.state
+    function Example() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
-      <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Create a Purchase</h3>
-          <Form onSubmit={this.onCreatePurchase}>
-            <Form.Group controlId="location">
-              <Form.Label>Location</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                name="location"
-                value={location}
-                placeholder="Enter email"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="date">
-              <Form.Label>Date</Form.Label>
-              <Form.Control
-                required
-                name="date"
-                value={date}
-                type="text"
-                placeholder="Date"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="price">
-              <Form.Label>Enter a Price</Form.Label>
-              <Form.Control
-                required
-                name="price"
-                value={price}
-                type="text"
-                placeholder="Enter a price"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-            >
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          {bookNow}
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSumit}>
               Submit
             </Button>
-          </Form>
-        </div>
-      </div>
+          </Modal.Footer>
+        </Modal>
+      </>
     )
   }
+  render () {
+    <Example />
+    const { location, date, price } = this.props
 }
 
-export default withRouter(CreatePurchase)
+
+export default CreatePurchase

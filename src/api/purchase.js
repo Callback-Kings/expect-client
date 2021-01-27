@@ -1,7 +1,7 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createPurchase = (purchase, user) => {
+export const makePurchase = (purchase, user) => {
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',
