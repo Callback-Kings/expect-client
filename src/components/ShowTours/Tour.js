@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-// import { withRouter } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 // import { createPurchase } from '../../api/purchase'
 
 class Tour extends Component {
@@ -36,13 +36,6 @@ class Tour extends Component {
       return { liked: !state.liked }
     })
   }
-
-  // handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   axios.post(`${apiUrl}`)
-  //     .then(res => console.log(res))
-  //     .catch(console.error)
-  // }
 
   purchaseTour = () => {
     this.setState((state, props) => {
@@ -99,7 +92,7 @@ class Tour extends Component {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button type="submit" variant="primary" onClick={this.handleSubmit}>
+            <Button variant="primary" href='#/create-purchases'>
               Submit
             </Button>
           </Modal.Footer>
