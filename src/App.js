@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import IndexPurchases from './components/IndexPurchases/IndexPurchases'
+import CreatePurchase from './components/CreatePurchase/CreatePurchase'
 
 import ShowTours from './components/ShowTours/ShowTours'
 // import tours from './data/tourData'
@@ -74,6 +75,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/purchases' render={() => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-purchases' render={() => (
+            <CreatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
