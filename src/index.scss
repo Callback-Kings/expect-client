@@ -1,1 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
+
+
+.tour-cards {
+    display: inline-block;
+    margin: 10px 0 0 15%;
+    flex-grow: 1;
+    width: calc(100% * (1/4) - 10px - 1px);
+    height: calc(100% *(1/2) - 10px);
+}
