@@ -4,7 +4,7 @@ import axios from 'axios'
 export const createPurchase = (purchase, user) => {
   return axios({
     method: 'POST',
-    url: apiUrl + '/purchases/',
+    url: apiUrl + '/purchases',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
