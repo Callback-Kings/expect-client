@@ -7,5 +7,7 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   createPurchaseSuccess: 'Successfully made a purchase!',
-  createPurchaseFailure: 'Purchase failed. Please try again.'
+  createPurchaseFailure: 'Purchase failed. Please try again.',
+  updatePurchaseSuccess: 'Succesfully updated your comment.',
+  updatePurchaseFailure: 'Failed to update your comment'
 }
