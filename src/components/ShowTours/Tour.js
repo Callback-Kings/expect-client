@@ -8,6 +8,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 // import { withRouter } from 'react-router-dom'
 // import { createPurchase } from '../../api/purchase'
 
@@ -21,6 +22,9 @@ class Tour extends Component {
     }
     this.state = {
       purchased: ''
+    }
+    this.state = {
+      show: false
     }
   }
 
@@ -49,6 +53,9 @@ class Tour extends Component {
   // allows for other things to be defined in this space ('onClicK', 'State')
   render () {
     const { location, date, price, image } = this.props
+    const { show } = this.state
+    const handleClose = () => this.setState({ show: false })
+    const handleShow = () => this.setState({ show: true })
     return (
       <Container className="tour-cards">
         <Row>
@@ -70,6 +77,7 @@ class Tour extends Component {
                   {this.state.liked ? 'Unlike' : 'Like'}
                 </Button>
                 <Button
+                  onClick={handleShow}
                   type="submit"
                   variant="primary">
                   Book Now
@@ -78,6 +86,24 @@ class Tour extends Component {
             </Card>
           </CardGroup>
         </Row>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>{location}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>Date: {date}</div>
+            <div>Price: ${price}</div>
+          </Modal.Body>
+          <Modal.Body>Click Submit to confirm</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button type="submit" variant="primary" onClick={this.handleSubmit}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     )
   }
