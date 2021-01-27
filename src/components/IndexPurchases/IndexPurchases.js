@@ -1,8 +1,9 @@
 // imports
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
+import { indexPurchase } from '../../api/purchase'
 
 // class
 
@@ -16,10 +17,13 @@ class IndexPurchases extends Component {
   }
 
   componentDidMount () {
-    axios(apiUrl + '/purchases')
+    const { user } = this.props
+    console.log(user)
+    indexPurchase(user, this.state.purchases)
       .then(res => this.setState({ purchases: res.data.purchases }))
       .catch(console.error)
   }
+
   render () {
     let purchasesJsx
     if (!this.state.purchases) {
@@ -29,7 +33,7 @@ class IndexPurchases extends Component {
     } else {
       const purchasesList = this.state.purchases.map(purchase => (
         <li key={purchase._id}>
-          <Link to={`/show-purchase/${purchase._id}`}>{purchase.location}</Link>
+          <Link to={'/purchases'}>Your Purchases</Link>
         </li>
       ))
       purchasesJsx = (
