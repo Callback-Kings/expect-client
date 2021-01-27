@@ -15,7 +15,7 @@ class CreatePurchase extends Component {
     }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault()
     makePurchase()
       .then(res => console.log(res))

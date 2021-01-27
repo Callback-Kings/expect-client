@@ -1,12 +1,12 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const makePurchase = (purchase, user) => {
+export const makePurchase = (user, purchase) => {
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',
     headers: {
-      'Authorization': `Bearer ${user.token}`
+      'Authorization': `Token token=${user.token}`
     },
     data: {
       purchase: {

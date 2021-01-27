@@ -10,7 +10,12 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 // import { withRouter } from 'react-router-dom'
-// import { createPurchase } from '../../api/purchase'
+import { makePurchase } from '../../api/purchase'
+// import axios from 'axios'
+// const config = {
+//   // production: 'https://safe-dawn-20664.herokuapp.com',
+//   apiUrl: 'http://localhost:4741'
+// }
 
 class Tour extends Component {
   // Ad a constructor to initialize our movie state
@@ -18,10 +23,25 @@ class Tour extends Component {
     super(props)
     // initialize our liked state
     this.state = {
+      purchase: {
+        location: '',
+        date: '',
+        price: ''
+      }
+    }
+    this.state = {
       liked: false,
       show: false
-
     }
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    // const { user } = this.props
+    const { user } = this.state
+    makePurchase(this.state, user)
+      .then(res => console.log(res))
+      .catch(console.error)
   }
 
   toggleLike = () => {
@@ -34,8 +54,9 @@ class Tour extends Component {
   }
 
   // handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   axios.post(`${apiUrl}`)
+  //   const { user } = this.props
+  //   // const { location, date, price } = this.props
+  //   axios.post(config.apiUrl + '/purchases', user)
   //     .then(res => console.log(res))
   //     .catch(console.error)
   // }
@@ -74,7 +95,6 @@ class Tour extends Component {
                 </Button>
                 <Button
                   onClick={handleShow}
-                  type="submit"
                   variant="primary">
                   Book Now
                 </Button>
@@ -87,14 +107,15 @@ class Tour extends Component {
             <Modal.Title>{location}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Date: {date}
-            Price: ${price}
+            <div>Date: {date}</div>
+            <div>Price: ${price}</div>
           </Modal.Body>
+          <Modal.Body>Click Submit to confirm</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button type="submit" variant="primary" onClick={this.handleSubmit}>
               Submit
             </Button>
           </Modal.Footer>
