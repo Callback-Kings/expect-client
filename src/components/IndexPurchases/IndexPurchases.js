@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 import { indexPurchase } from '../../api/purchase'
+// import purchases from '../../data/tourData'
 
 // class
 
@@ -18,7 +19,6 @@ class IndexPurchases extends Component {
 
   componentDidMount () {
     const { user } = this.props
-    console.log(user)
     indexPurchase(user, this.state.purchases)
       .then(res => this.setState({ purchases: res.data.purchases }))
       .catch(console.error)
@@ -31,16 +31,13 @@ class IndexPurchases extends Component {
     } else if (this.state.purchases.length === 0) {
       purchasesJsx = 'No purchase history. Why not make some? Go buy a tour!'
     } else {
-      const purchasesList = this.state.purchases.map(purchase => (
-        <li key={purchase._id}>
-          <Link to={'/purchases'}>Your Purchases</Link>
-        </li>
+      purchasesJsx = this.state.purchases.map(purchase => (
+        <Link to={`/purchases/${purchase.id}`} key={purchase.id}>
+          <li key={purchase.id}>
+            Location:{purchase.location}  ID:{purchase.id}
+          </li>
+        </Link>
       ))
-      purchasesJsx = (
-        <ul>
-          {purchasesList}
-        </ul>
-      )
     }
 
     return (
