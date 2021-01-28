@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 import { indexPurchase } from '../../api/purchase'
+// import purchases from '../../data/tourData'
 
 // class
 
@@ -32,8 +33,8 @@ class IndexPurchases extends Component {
       purchasesJsx = 'No purchase history. Why not make some? Go buy a tour!'
     } else {
       purchasesJsx = this.state.purchases.map(purchase => (
-        <Link to={'/purchases'} key={purchase._id}>
-          <li key={purchase._id}>
+        <Link to={`/purchases/${purchase.id}`} key={purchase.id}>
+          <li key={purchase.id}>
             {purchase.location}
           </li>
         </Link>
