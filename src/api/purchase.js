@@ -2,9 +2,10 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const createPurchase = (user, purchase) => {
+  console.log('This is your purchase:', location)
   return axios({
     method: 'POST',
-    url: apiUrl + '/purchases',
+    url: apiUrl + '/purchases/',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },

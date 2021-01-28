@@ -1,17 +1,17 @@
 import React from 'react'
-import tours from './../../data/tourData'
+import purchases from './../../data/tourData'
 import Tour from './Tour'
 
 const ShowTours = () => (
   <div>
     <h2 style={{ marginLeft: '37%', marginRight: '25%' }}>Tours To Take!</h2>
-    {tours.map(tour => (
+    {purchases.map(purchase => (
       <Tour
-        key={tour.id}
-        location={tour.location}
-        date={tour.date}
-        price={tour.price}
-        image={tour.image}
+        key={purchase.id}purchase
+        location={purchase.location}
+        date={purchase.date}
+        price={purchase.price}
+        image={purchase.image}
       />
     ))}
   </div>
