@@ -31,18 +31,18 @@ class IndexPurchases extends Component {
     } else if (this.state.purchases.length === 0) {
       purchasesJsx = 'No purchase history. Why not make some? Go buy a tour!'
     } else {
-      const purchasesList = this.state.purchases.map(purchase => (
+      purchasesJsx = this.state.purchases.map(purchase => (
         <Link to={'/purchases'} key={purchase._id}>
           <li key={purchase._id}>
             {purchase.location}
           </li>
         </Link>
       ))
-      purchasesJsx = (
-        <ul>
-          {purchasesList}
-        </ul>
-      )
+      // purchasesJsx = (
+      //   <ul>
+      //     {purchasesList}
+      //   </ul>
+      // )
     }
 
     return (
