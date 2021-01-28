@@ -2,7 +2,11 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const createPurchase = (user, purchase) => {
+<<<<<<< HEAD
   console.log('The user is:', user)
+=======
+  console.log('This is your purchase:', location)
+>>>>>>> 78e603d (add on post on submit event to purchase tour modal.)
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',
