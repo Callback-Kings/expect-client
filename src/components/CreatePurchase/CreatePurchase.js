@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createPurchase, signIn } from '../../api/purchase'
+import { createPurchase } from '../../api/purchase'
 import messages from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -25,10 +25,14 @@ class CreatePurchase extends Component {
   onCreatePurchase = event => {
     event.preventDefault()
 
-    const { msgAlert, history } = this.props
+    const { msgAlert, history, user } = this.props
+    const purchase = {
+      location: this.state.location,
+      date: this.state.date,
+      price: this.state.price
+    }
 
-    createPurchase(this.state)
-      .then(() => signIn(this.state))
+    createPurchase(user, purchase)
       // .then(res => setUser(res.data.user))
       .then(() => msgAlert({
         heading: 'Purchase successful.',
@@ -37,7 +41,7 @@ class CreatePurchase extends Component {
       }))
       .then(() => history.push('/'))
       .catch(error => {
-        this.setState({ location: '', date: '', price: '', comment: '' })
+        this.setState({ location: '', date: '', price: '' })
         msgAlert({
           heading: 'Purchase Failed with error: ' + error.message,
           message: messages.createPurchaseFailure,
@@ -61,7 +65,7 @@ class CreatePurchase extends Component {
                 type="text"
                 name="location"
                 value={location}
-                placeholder="Enter email"
+                placeholder="Location Name"
                 onChange={this.handleChange}
               />
             </Form.Group>
