@@ -10,4 +10,5 @@ export default {
   createPurchaseFailure: 'Purchase failed. Please try again.',
   updatePurchaseSuccess: 'Succesfully updated your comment.',
   updatePurchaseFailure: 'Failed to update your comment'
+  changePasswordFailure: 'Failed to change passwords. Check your old password and try again.'
 }

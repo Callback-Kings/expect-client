@@ -49,3 +49,13 @@ export const updatePurchase = (id, data, user) => {
     data: { purchase: { comment: data } }
   })
 }
+
+export const deletePurchase = (id, purchase, user) => {
+  return axios({
+    url: apiUrl + '/purchases/' + id,
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
