@@ -1,4 +1,4 @@
-const tours = [
+const purchases = [
   {
     id: 1,
     location: 'Miami',
@@ -43,4 +43,4 @@ const tours = [
   }
 ]
 
-export default tours
+export default purchases
