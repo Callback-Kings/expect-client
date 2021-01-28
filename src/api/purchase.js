@@ -1,10 +1,10 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createPurchase = (purchase, user) => {
+export const createPurchase = (user, purchase) => {
   return axios({
     method: 'POST',
-    url: apiUrl + '/purchases',
+    url: apiUrl + '/purchases/',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
@@ -39,14 +39,14 @@ export const showPurchase = (id, user) => {
   })
 }
 
-export const updatePurchase = (id, purchase, user) => {
+export const updatePurchase = (id, data, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { purchase }
+    data: { purchase: { comment: data } }
   })
 }
 
