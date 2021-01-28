@@ -54,7 +54,6 @@ class Tour extends Component {
     console.log(this.props)
     createPurchase(user, purchase)
       .then(res => console.log('The user in tours is:', user))
-      .then(res => console.log('The purchased tour is:', purchase))
       // .then(res => setUser(res.data.user))
       .then(() => msgAlert({
         heading: 'Purchase successful.',
