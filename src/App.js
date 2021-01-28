@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
@@ -10,12 +9,10 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import IndexPurchases from './components/IndexPurchases/IndexPurchases'
-import FindPurchase from './components/FindPurchase/FindPurchase'
-
 import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
-
+import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -24,27 +21,21 @@ class App extends Component {
       msgAlerts: []
     }
   }
-
   setUser = user => this.setState({ user })
-
   clearUser = () => this.setState({ user: null })
-
   deleteAlert = (id) => {
     this.setState((state) => {
       return { msgAlerts: state.msgAlerts.filter(msg => msg.id !== id) }
     })
   }
-
   msgAlert = ({ heading, message, variant }) => {
     const id = uuid()
     this.setState((state) => {
       return { msgAlerts: [...state.msgAlerts, { heading, message, variant, id }] }
     })
   }
-
   render () {
     const { msgAlerts, user } = this.state
-
     return (
       <Fragment>
         <Header user={user} />
@@ -74,16 +65,15 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/show-tours' render={({ props }) => (
             <ShowTours msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/purchases' render={() => (
+          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/find-purchase/' render={() => (
-            <FindPurchase msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} path='/purchases/:id' render={() => (
+            <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
     )
   }
 }
-
 export default App

@@ -39,13 +39,13 @@ export const showPurchase = (id, user) => {
   })
 }
 
-export const updatePurchase = (id, purchase, user) => {
+export const updatePurchase = (id, data, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { purchase }
+    data: { purchase: { comment: data } }
   })
 }
