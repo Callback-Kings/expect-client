@@ -1,7 +1,8 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createPurchase = (purchase, user) => {
+export const createPurchase = (user, purchase) => {
+  console.log('The user is:', user)
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',
@@ -19,18 +20,12 @@ export const createPurchase = (purchase, user) => {
   })
 }
 
-export const indexPurchase = (purchase, user) => {
+export const indexPurchase = (user, purchase) => {
   return axios({
     url: apiUrl + '/purchases/',
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${user.token}`
-    },
-    data: {
-      purchase: {
-        email: purchase.email,
-        password: purchase.password
-      }
     }
   })
 }
