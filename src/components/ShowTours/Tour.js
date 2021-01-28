@@ -15,6 +15,7 @@ import { createPurchase } from '../../api/purchase'
 // import axios from 'axios'
 // import purchases from './../../data/tourData'
 import messages from '../AutoDismissAlert/messages'
+// import { withRouter } from 'react-router-dom'
 
 // const config = {
 //   apiUrl: 'http://localhost:4741/purchases'
@@ -42,15 +43,42 @@ class Tour extends Component {
     })
   }
 
+  onCreatePurchase = (event) => {
+    event.preventDefault()
+    const { user, msgAlert, history } = this.props
+    const purchase = {
+      location: this.props.location,
+      date: this.props.date,
+      price: this.props.price
+    }
+    console.log(this.props)
+    createPurchase(user, purchase)
+      .then(res => console.log('The user in tours is:', user))
+      // .then(res => setUser(res.data.user))
+      .then(() => msgAlert({
+        heading: 'Purchase successful.',
+        message: messages.createPurchaseSuccess,
+        variant: 'success'
+      }))
+      .then(() => history.push('/'))
+      .catch(error => {
+        this.setState({ location: '', date: '', price: '' })
+        msgAlert({
+          heading: 'Purchase Failed with error: ' + error.message,
+          message: messages.createPurchaseFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
   render () {
-    const { msgAlert, history, user } = this.state.props
-    // this.onCreatePurchase = () => {
+    // this.onCreatePurchase = ({ user }) => {
     //   axios({
     //     method: 'post',
     //     url: 'http://localhost:4741/purchases',
-    //     // headers: {
-    //     //   'Authorization': `Bearer ${user.token}`
-    //     // },
+    //     headers: {
+    //       'Authorization': `Bearer ${user.token}`
+    //     },
     //     data: {
     //       location: location,
     //       date: date,
@@ -60,38 +88,37 @@ class Tour extends Component {
     //     .then(res => console.log(res))
     //     .catch(console.error)
     // }
-    this.onCreatePurchase = event => {
-      event.preventDefault()
-
-      // const { msgAlert, history, user } = props
-      const purchase = {
-        data: {
-          location: this.state.location,
-          date: this.state.date,
-          price: this.state.price
-        }
-      }
-
-      createPurchase(user, purchase)
-        // .then(res => setUser(res.data.user))
-        .then(() => msgAlert({
-          heading: 'Purchase successful.',
-          message: messages.createPurchaseSuccess,
-          variant: 'success'
-        }))
-        .then(() => history.push('/'))
-        .catch(error => {
-          this.setState({ location: '', date: '', price: '' })
-          msgAlert({
-            heading: 'Purchase Failed with error: ' + error.message,
-            message: messages.createPurchaseFailure,
-            variant: 'danger'
-          })
-        })
-    }
+    //
+    // const { user } = this.props
+    // this.onCreatePurchase = (event) => {
+    //   event.preventDefault()
+    //
+    //   const purchase = {
+    //     location: this.props.location,
+    //     date: this.props.date,
+    //     price: this.props.price
+    //   }
+    //   createPurchase(user, purchase)
+    //   console.log('The user in tours is:', user)
+    //     // .then(res => setUser(res.data.user))
+    //     .then(() => msgAlert({
+    //       heading: 'Purchase successful.',
+    //       message: messages.createPurchaseSuccess,
+    //       variant: 'success'
+    //     }))
+    //     .then(() => history.push('/'))
+    //     .catch(error => {
+    //       this.setState({ location: '', date: '', price: '' })
+    //       msgAlert({
+    //         heading: 'Purchase Failed with error: ' + error.message,
+    //         message: messages.createPurchaseFailure,
+    //         variant: 'danger'
+    //       })
+    //     })
+    // }
 
     const { image } = this.props
-    const { location, date, price } = this.props
+    const { location, date, price, user } = this.props
     const { show } = this.state
     const handleClose = () => this.setState({ show: false })
     const handleShow = () => this.setState({ show: true })
@@ -126,7 +153,7 @@ class Tour extends Component {
           </CardGroup>
         </Row>
         <Modal show={show} onHide={handleClose}>
-          <Form onSubmit={this.onCreatePurchase}>
+          <Form user={user} onSubmit={this.onCreatePurchase}>
             <Modal.Header closeButton>
               <Modal.Title>{location}</Modal.Title>
             </Modal.Header>
