@@ -2,7 +2,7 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const createPurchase = (user, purchase) => {
-  console.log('This is your purchase:', location)
+  console.log('The user is:', user)
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',

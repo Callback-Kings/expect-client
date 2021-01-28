@@ -13,6 +13,7 @@ import IndexPurchases from './components/IndexPurchases/IndexPurchases'
 import CreatePurchase from './components/CreatePurchase/CreatePurchase'
 
 import ShowTours from './components/ShowTours/ShowTours'
+// import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 
 class App extends Component {
@@ -70,7 +71,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/show-tours' render={() => (
+          <AuthenticatedRoute user={user} path='/show-tours' render={({ props }) => (
             <ShowTours msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/purchases' render={() => (
