@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import IndexPurchases from './components/IndexPurchases/IndexPurchases'
+import ShowPurchase from './components/ShowPurchase/ShowPurchase'
 import CreatePurchase from './components/CreatePurchase/CreatePurchase'
 
 import ShowTours from './components/ShowTours/ShowTours'
@@ -74,8 +75,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/show-tours' render={({ props }) => (
             <ShowTours msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/purchases' render={() => (
+          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={() => (
+            <ShowPurchase msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/create-purchases' render={() => (
             <CreatePurchase msgAlert={this.msgAlert} user={user} />
