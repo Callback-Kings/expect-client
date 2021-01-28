@@ -1,7 +1,7 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
-
 export const createPurchase = (user, purchase) => {
+  console.log('The user is:', user)
   return axios({
     method: 'POST',
     url: apiUrl + '/purchases/',
@@ -18,7 +18,6 @@ export const createPurchase = (user, purchase) => {
     }
   })
 }
-
 export const indexPurchase = (user, purchase) => {
   return axios({
     url: apiUrl + '/purchases/',
@@ -28,7 +27,6 @@ export const indexPurchase = (user, purchase) => {
     }
   })
 }
-
 export const showPurchase = (id, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
@@ -38,14 +36,13 @@ export const showPurchase = (id, user) => {
     }
   })
 }
-
-export const updatePurchase = (id, data, user) => {
+export const updatePurchase = (id, purchase, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { purchase: { comment: data } }
+    data: { purchase }
   })
 }
