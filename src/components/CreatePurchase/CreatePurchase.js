@@ -52,6 +52,7 @@ class CreatePurchase extends Component {
 
   render () {
     const { location, date, price } = this.state
+    // const { location, date, price } = this.props
 
     return (
       <div className="row">
