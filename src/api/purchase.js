@@ -19,7 +19,6 @@ export const createPurchase = (user, purchase) => {
     }
   })
 }
-
 export const indexPurchase = (user, purchase) => {
   return axios({
     url: apiUrl + '/purchases/',
@@ -29,7 +28,6 @@ export const indexPurchase = (user, purchase) => {
     }
   })
 }
-
 export const showPurchase = (id, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
@@ -39,7 +37,6 @@ export const showPurchase = (id, user) => {
     }
   })
 }
-
 export const updatePurchase = (id, purchase, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,

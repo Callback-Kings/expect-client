@@ -16,6 +16,7 @@ import CreatePurchase from './components/CreatePurchase/CreatePurchase'
 import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
+import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
 
 class App extends Component {
   constructor (props) {
@@ -78,11 +79,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={() => (
-            <ShowPurchase msgAlert={this.msgAlert} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/create-purchases' render={() => (
-            <CreatePurchase msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} path='/purchases/:id' render={() => (
+            <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

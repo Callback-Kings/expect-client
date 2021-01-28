@@ -20,7 +20,7 @@ class IndexPurchases extends Component {
   componentDidMount () {
     const { user } = this.props
     console.log(user)
-    indexPurchase(user, this.state.purchases)
+    indexPurchase(user)
       .then(res => this.setState({ purchases: res.data.purchases }))
       .catch(console.error)
   }
@@ -33,11 +33,9 @@ class IndexPurchases extends Component {
       purchasesJsx = 'No purchase history. Why not make some? Go buy a tour!'
     } else {
       purchasesJsx = this.state.purchases.map(purchase => (
-        <Link to={`/purchases/${purchase.id}`} key={purchase.id}>
-          <li key={purchase.id}>
-            {purchase.location}
-          </li>
-        </Link>
+        <li key={purchase.id}>
+          <Link to={`/purchases/${purchase.id}`}>{purchase.location}</Link>
+        </li>
       ))
       // purchasesJsx = (
       //   <ul>

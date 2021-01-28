@@ -29,7 +29,8 @@ class CreatePurchase extends Component {
     const purchase = {
       location: this.state.location,
       date: this.state.date,
-      price: this.state.price
+      price: this.state.price,
+      comment: ''
     }
 
     createPurchase(user, purchase)
