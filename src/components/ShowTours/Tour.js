@@ -51,10 +51,7 @@ class Tour extends Component {
       date: this.props.date,
       price: this.props.price
     }
-    console.log(this.props)
     createPurchase(user, purchase)
-      .then(res => console.log('The user in tours is:', user))
-      // .then(res => setUser(res.data.user))
       .then(() => msgAlert({
         heading: 'Purchase successful.',
         message: messages.createPurchaseSuccess,
@@ -72,51 +69,6 @@ class Tour extends Component {
   }
 
   render () {
-    // this.onCreatePurchase = ({ user }) => {
-    //   axios({
-    //     method: 'post',
-    //     url: 'http://localhost:4741/purchases',
-    //     headers: {
-    //       'Authorization': `Bearer ${user.token}`
-    //     },
-    //     data: {
-    //       location: location,
-    //       date: date,
-    //       price: price
-    //     }
-    //   })
-    //     .then(res => console.log(res))
-    //     .catch(console.error)
-    // }
-    //
-    // const { user } = this.props
-    // this.onCreatePurchase = (event) => {
-    //   event.preventDefault()
-    //
-    //   const purchase = {
-    //     location: this.props.location,
-    //     date: this.props.date,
-    //     price: this.props.price
-    //   }
-    //   createPurchase(user, purchase)
-    //   console.log('The user in tours is:', user)
-    //     // .then(res => setUser(res.data.user))
-    //     .then(() => msgAlert({
-    //       heading: 'Purchase successful.',
-    //       message: messages.createPurchaseSuccess,
-    //       variant: 'success'
-    //     }))
-    //     .then(() => history.push('/'))
-    //     .catch(error => {
-    //       this.setState({ location: '', date: '', price: '' })
-    //       msgAlert({
-    //         heading: 'Purchase Failed with error: ' + error.message,
-    //         message: messages.createPurchaseFailure,
-    //         variant: 'danger'
-    //       })
-    //     })
-    // }
-
     const { image } = this.props
     const { location, date, price, user } = this.props
     const { show } = this.state
