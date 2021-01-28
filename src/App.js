@@ -10,8 +10,6 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import IndexPurchases from './components/IndexPurchases/IndexPurchases'
-import ShowPurchase from './components/ShowPurchase/ShowPurchase'
-import CreatePurchase from './components/CreatePurchase/CreatePurchase'
 
 import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
