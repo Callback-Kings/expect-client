@@ -1,5 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+
 export const createPurchase = (user, purchase) => {
   console.log('The user is:', user)
   return axios({

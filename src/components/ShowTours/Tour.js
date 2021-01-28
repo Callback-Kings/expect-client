@@ -16,9 +16,11 @@ import { createPurchase } from '../../api/purchase'
 // import purchases from './../../data/tourData'
 import messages from '../AutoDismissAlert/messages'
 // import { withRouter } from 'react-router-dom'
+
 // const config = {
 //   apiUrl: 'http://localhost:4741/purchases'
 // }
+
 class Tour extends Component {
   // Ad a constructor to initialize our movie state
   constructor (props) {
@@ -39,6 +41,7 @@ class Tour extends Component {
       return { liked: !state.liked }
     })
   }
+
   onCreatePurchase = (event) => {
     event.preventDefault()
     const { user, msgAlert, history } = this.props
