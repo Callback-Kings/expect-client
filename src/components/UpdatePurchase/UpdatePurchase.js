@@ -64,24 +64,26 @@ class UpdatePurchase extends Component {
       })
     }
   }
-  handleDeleteSubmit = (event) => {
+  handleDeleteSubmit = async (event) => {
     event.preventDefault()
-    const { msgAlert, history, user } = this.props
-    deletePurchase(this.props.match.params.id, user)
-      .then(() => this.setState({ comment: '' }))
-      .then(() => msgAlert({
-        heading: 'Deleted Succesfully',
-        message: messages.deletePurchaseSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/purchases/'))
-      .catch(err => {
-        msgAlert({
-          heading: 'Update Comment failed with error: ' + err.message,
-          message: messages.deletePurchaseFailure,
-          variant: 'danger'
-        })
+    const { msgAlert, user } = this.props
+
+    try {
+      await deletePurchase(this.props.match.params.id, user)
+        .then(() => this.setState({ updated: true, comment: '' }))
+        .then(() => this.setState({ updated: false }))
+        .then(() => msgAlert({
+          heading: 'Deleted Succesfully',
+          message: messages.deletePurchaseSuccess,
+          variant: 'success'
+        }))
+    } catch (err) {
+      msgAlert({
+        heading: 'Update Comment failed with error: ' + err.message,
+        message: messages.deletePurchaseFailure,
+        variant: 'danger'
       })
+    }
   }
   render () {
     return (
