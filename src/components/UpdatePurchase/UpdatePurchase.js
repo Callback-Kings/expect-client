@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 // import IndexPurchases from './../IndexPurchases/IndexPurchases'
-
 class UpdatePurchase extends Component {
   constructor (props) {
     super(props)
@@ -19,6 +18,7 @@ class UpdatePurchase extends Component {
   }
   handleChange = (event) => {
     this.setState({
+      updated: false,
       [event.target.name]: event.target.value
     })
   }
@@ -32,24 +32,37 @@ class UpdatePurchase extends Component {
         }
       })
   }
-  handleSubmit = (event) => {
-    event.preventDefault()
-    const { msgAlert, history, user } = this.props
-    updatePurchase(this.props.match.params.id, this.state.comment, user)
-      .then(() => this.setState({ updated: true }))
-      .then(() => msgAlert({
-        heading: 'Updated Succesfully',
-        message: messages.updatePurchaseSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/purchases/'))
-      .catch(err => {
-        msgAlert({
-          heading: 'Update Comment failed with error: ' + err.message,
-          message: messages.updatePurchaseFailure,
-          variant: 'danger'
+  componentDidUpdate () {
+    if (this.state.prevComm !== this.state.comment && this.state.updated === true) {
+      showPurchase(this.props.match.params.id, this.props.user)
+        .then((res) => {
+          if (!res.data.purchase.comment) {
+            this.setState({ prevComm: 'No Comment Yet' })
+          } else {
+            this.setState({ prevComm: res.data.purchase.comment })
+          }
         })
+    }
+  }
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    const { user, msgAlert } = this.props
+    try {
+      await updatePurchase(this.props.match.params.id, this.state.comment, user)
+        .then(() => this.setState({ updated: true, comment: '' }))
+        .then(() => this.setState({ updated: false }))
+        .then(() => msgAlert({
+          heading: 'Updated Succesfully',
+          message: messages.updatePurchaseSuccess,
+          variant: 'success'
+        }))
+    } catch (err) {
+      msgAlert({
+        heading: 'Update Comment failed with error: ' + err.message,
+        message: messages.updatePurchaseFailure,
+        variant: 'danger'
       })
+    }
   }
   handleDeleteSubmit = (event) => {
     event.preventDefault()
