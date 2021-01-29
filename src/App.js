@@ -13,6 +13,9 @@ import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
+import ShowPurchase from './components/ShowPurchase/ShowPurchase'
+// import Carousel from 'react-bootstrap/Carousel'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -50,8 +53,11 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route path='/sign-up' render={() => (
+          <Route exact path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+          )} />
+          <Route exact path='/' render={() => (
+            <ShowTours user={user} msgAlert={this.msgAlert} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -62,13 +68,16 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/show-tours' render={({ props }) => (
+          <AuthenticatedRoute user={user} exact path='/show-tours' render={({ props }) => (
             <ShowTours msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
+          <AuthenticatedRoute user={user} exact path='/purchases' render={({ props }) => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/purchases/:id' render={() => (
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={({ props }) => (
+            <ShowPurchase msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={({ props }) => (
             <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>

@@ -50,11 +50,13 @@ export const updatePurchase = (id, data, user) => {
   })
 }
 
-export const deletePurchase = (id, purchase, user) => {
+export const deletePurchase = (id, user) => {
   return axios({
     url: apiUrl + '/purchases/' + id,
     method: 'DELETE',
+    // Add an authorization header
     headers: {
+      // we need the user, so we have access to their token
       'Authorization': `Bearer ${user.token}`
     }
   })

@@ -1,10 +1,11 @@
 // imports
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 import { indexPurchase } from '../../api/purchase'
 // import purchases from '../../data/tourData'
+// import UpdatePurchase from './../UpdatePurchase/UpdatePurchase'
 
 // class
 
@@ -19,7 +20,6 @@ class IndexPurchases extends Component {
 
   componentDidMount () {
     const { user } = this.props
-    console.log(user)
     indexPurchase(user)
       .then(res => this.setState({ purchases: res.data.purchases }))
       .catch(console.error)
@@ -34,7 +34,9 @@ class IndexPurchases extends Component {
     } else {
       purchasesJsx = this.state.purchases.map(purchase => (
         <li key={purchase.id}>
-          <Link to={`/purchases/${purchase.id}`}>{purchase.location}</Link>
+          <Link to={`/purchases/${purchase.id}`} location={purchase.location} date={purchase.date} price={purchase.price}>
+            {purchase.location}
+          </Link>
         </li>
       ))
     }
@@ -49,4 +51,4 @@ class IndexPurchases extends Component {
 }
 
 // exports
-export default IndexPurchases
+export default withRouter(IndexPurchases)
