@@ -13,6 +13,8 @@ import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
+import Carousel from 'react-bootstrap/Carousel'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -71,6 +73,44 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/purchases/:id' render={({ props }) => (
             <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
+
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://d3hnfqimznafg0.cloudfront.net/images/news/ImageForNews_26919_15786618897301054.png"
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://cdn.cnn.com/cnnnext/dam/assets/190517091026-07-unusual-landscapes-travel-full-169.jpg"
+                alt="Third slide"
+              />
+
+              <Carousel.Caption>
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://www.theolivepress.es/wp-content/uploads/2019/02/High-frontier.jpg"
+                alt="Third slide"
+              />
+
+              <Carousel.Caption>
+                <h3>Third slide label</h3>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
         </main>
       </Fragment>
     )
