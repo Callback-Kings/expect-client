@@ -51,21 +51,29 @@ class Tour extends Component {
       date: this.props.date,
       price: this.props.price
     }
-    createPurchase(user, purchase)
-      .then(() => msgAlert({
-        heading: 'Purchase successful.',
-        message: messages.createPurchaseSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/'))
-      .catch(error => {
-        this.setState({ location: '', date: '', price: '' })
-        msgAlert({
-          heading: 'Purchase Failed with error: ' + error.message,
-          message: messages.createPurchaseFailure,
-          variant: 'danger'
+    if (user) {
+      createPurchase(user, purchase)
+        .then(() => msgAlert({
+          heading: 'Purchase successful.',
+          message: messages.createPurchaseSuccess,
+          variant: 'success'
+        }))
+        .then(() => history.push('/purchases'))
+        .catch(error => {
+          this.setState({ location: '', date: '', price: '' })
+          msgAlert({
+            heading: 'Purchase Failed with error: ' + error.message,
+            message: messages.createPurchaseFailure,
+            variant: 'danger'
+          })
         })
+    } else {
+      history.push('/sign-up')
+      msgAlert({
+        heading: 'Please sign up to book a tour. Already a User? Sign in to Book!',
+        variant: 'danger'
       })
+    }
   }
 
   render () {
