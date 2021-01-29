@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { updatePurchase, showPurchase } from '../../api/purchase'
+import { updatePurchase, showPurchase, deletePurchase } from '../../api/purchase'
 import messages from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
+// import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+// import IndexPurchases from './../IndexPurchases/IndexPurchases'
+
 class UpdatePurchase extends Component {
   constructor (props) {
     super(props)
@@ -38,7 +42,26 @@ class UpdatePurchase extends Component {
         message: messages.updatePurchaseSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/purchases/'))
+      .catch(err => {
+        msgAlert({
+          heading: 'Update Comment failed with error: ' + err.message,
+          message: messages.updatePurchaseFailure,
+          variant: 'danger'
+        })
+      })
+  }
+  handleDeleteSubmit = (event) => {
+    event.preventDefault()
+    const { msgAlert, history, user } = this.props
+    deletePurchase(this.props.match.params.id, user)
+      .then(() => this.setState({ comment: '' }))
+      .then(() => msgAlert({
+        heading: 'Updated Succesfully',
+        message: messages.updatePurchaseSuccess,
+        variant: 'success'
+      }))
+      .then(() => history.push('/purchases/'))
       .catch(err => {
         msgAlert({
           heading: 'Update Comment failed with error: ' + err.message,
@@ -51,8 +74,17 @@ class UpdatePurchase extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h2>Current Comment:</h2>
-          <p>{this.state.prevComm}</p>
+          <Form onSubmit={this.handleDeleteSubmit}>
+            <Card>
+              <Card.Header><h2>Current Comment:</h2></Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  {this.state.prevComm}
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer><Button variant="primary" type="submit">Delete</Button></Card.Footer>
+            </Card>
+          </Form>
           <h2>Update Your Comment:</h2>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="comment">

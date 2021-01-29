@@ -65,10 +65,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/show-tours' render={({ props }) => (
             <ShowTours msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
+          <AuthenticatedRoute user={user} exact path='/purchases' render={({ props }) => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/purchases/:id' render={() => (
+          <AuthenticatedRoute user={user} path='/purchases/:id' render={({ props }) => (
             <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
