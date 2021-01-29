@@ -13,6 +13,7 @@ import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
+import ShowPurchase from './components/ShowPurchase/ShowPurchase'
 // import Carousel from 'react-bootstrap/Carousel'
 
 class App extends Component {
@@ -70,7 +71,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/purchases' render={({ props }) => (
             <IndexPurchases msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/purchases/:id' render={({ props }) => (
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={({ props }) => (
+            <ShowPurchase msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={({ props }) => (
             <UpdatePurchase msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
