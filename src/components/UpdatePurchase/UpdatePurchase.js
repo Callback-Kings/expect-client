@@ -63,20 +63,6 @@ class UpdatePurchase extends Component {
         variant: 'danger'
       })
     }
-    // )
-    // .then(() => msgAlert({
-    //   heading: 'Updated Succesfully',
-    //   message: messages.updatePurchaseSuccess,
-    //   variant: 'success'
-    // }))
-    // // .then(() => history.push('/purchases/'))
-    // .catch(err => {
-    //   msgAlert({
-    //     heading: 'Update Comment failed with error: ' + err.message,
-    //     message: messages.updatePurchaseFailure,
-    //     variant: 'danger'
-    //   })
-    // })
   }
   handleDeleteSubmit = (event) => {
     event.preventDefault()
