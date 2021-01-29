@@ -56,11 +56,11 @@ class ShowPurchase extends Component {
     }
 
     return (
-      <Jumbotron fluid>
-        <Container>
+      <Jumbotron fluid style={{ boxShadow: '4px 4px 4px 4px rgba(0, 0, 0, 0.2)' }}>
+        <Container style={{ textAlign: 'center' }}>
           <h2>Location: {purchase.location}</h2>
           <h5>Date: {purchase.date}</h5>
-          <h6>Price: {purchase.price}</h6>
+          <h6>Price: ${purchase.price}</h6>
         </Container>
       </Jumbotron>
     )
