@@ -13,6 +13,8 @@ import ShowTours from './components/ShowTours/ShowTours'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
+// import Carousel from 'react-bootstrap/Carousel'
+
 class App extends Component {
   constructor (props) {
     super(props)
