@@ -100,7 +100,7 @@ class UpdatePurchase extends Component {
               <Card.Footer><Button variant="primary" type="submit">Delete</Button></Card.Footer>
             </Card>
           </Form>
-          <h2>Update Your Comment:</h2>
+          <h2>{}</h2>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="comment">
               <Form.Label>Enter Your New Comment</Form.Label>
