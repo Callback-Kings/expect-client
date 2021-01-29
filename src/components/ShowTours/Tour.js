@@ -10,11 +10,16 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-// import { Link } from 'react-router-dom'
 import { createPurchase } from '../../api/purchase'
+import messages from '../AutoDismissAlert/messages'
+
+import { InjectedCheckoutForm } from '../CheckoutForm/CheckoutForm'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+const stripePromise = loadStripe('pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz')
+// import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import purchases from './../../data/tourData'
-import messages from '../AutoDismissAlert/messages'
 // import { withRouter } from 'react-router-dom'
 
 // const config = {
@@ -121,13 +126,15 @@ class Tour extends Component {
               <div>Date: {date}</div>
               <div>Price: ${price}</div>
             </Modal.Body>
-            <Modal.Body>Click Submit to confirm</Modal.Body>
+            <Modal.Body>
+              <Elements stripe={stripePromise}>
+                <InjectedCheckoutForm />
+              </Elements>
+            </Modal.Body>
+            <Modal.Body>Pay to confirm</Modal.Body>
             {/* <Modal.Footer> */}
             <Button variant="secondary" onClick={handleClose}>
               Close
-            </Button>
-            <Button type="submit" variant="primary" onClick={handleClose}>
-                Submit
             </Button>
           </Form>
           {/* </Modal.Footer> */}
