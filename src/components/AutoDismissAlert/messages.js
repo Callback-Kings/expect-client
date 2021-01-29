@@ -9,5 +9,7 @@ export default {
   createPurchaseSuccess: 'Successfully made a purchase!',
   createPurchaseFailure: 'Purchase failed. Please try again.',
   updatePurchaseSuccess: 'Succesfully updated your comment.',
-  updatePurchaseFailure: 'Failed to update your comment'
+  updatePurchaseFailure: 'Failed to update your comment',
+  deletePurchaseSuccess: 'Succesfully deleted your comment.',
+  deletePurchaseFailure: 'Failed to delete your comment'
 }

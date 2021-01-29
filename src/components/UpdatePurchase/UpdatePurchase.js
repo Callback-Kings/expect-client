@@ -57,15 +57,15 @@ class UpdatePurchase extends Component {
     deletePurchase(this.props.match.params.id, user)
       .then(() => this.setState({ comment: '' }))
       .then(() => msgAlert({
-        heading: 'Updated Succesfully',
-        message: messages.updatePurchaseSuccess,
+        heading: 'Deleted Succesfully',
+        message: messages.deletePurchaseSuccess,
         variant: 'success'
       }))
       .then(() => history.push('/purchases/'))
       .catch(err => {
         msgAlert({
           heading: 'Update Comment failed with error: ' + err.message,
-          message: messages.updatePurchaseFailure,
+          message: messages.deletePurchaseFailure,
           variant: 'danger'
         })
       })
