@@ -46,7 +46,7 @@ const purchases = [
     location: 'Italy',
     date: '2021-04-01',
     price: '75',
-    image: 'https://cdn.statically.io/img/lh4.googleusercontent.com/proxy/_OYtNrXCdUjG1b6gzuIOBwfzfKNbv8CdR1JtxX5H80V3ZYgifjM5MFTnZWlM3dOPAJ2ryYfr75evZ_8Br53ZatJ0wDWvOiG2saMYOUqlZs6ZxFQEw9mAQHKiGhOZFQaw=s0-d'
+    image: 'https://wallpaperaccess.com/full/1127817.jpg'
   },
   {
     id: 8,

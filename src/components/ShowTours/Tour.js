@@ -108,6 +108,7 @@ class Tour extends Component {
                   {this.state.liked ? 'Unlike' : 'Like'}
                 </Button>
                 <Button
+                  style={{ boxShadow: '2px 2px 2px 2px rgba(0, 0, 0, 0.1)' }}
                   onClick={handleShow}
                   type="submit"
                   variant="primary">
