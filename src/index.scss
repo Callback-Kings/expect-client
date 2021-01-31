@@ -8,6 +8,13 @@ $dark: #314455;
 
 @import '~bootstrap/scss/bootstrap';
 
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+
+* {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+
+}
+
 
 .tour-cards {
     display: inline-block;
