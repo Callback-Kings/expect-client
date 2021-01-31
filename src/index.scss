@@ -17,6 +17,12 @@ $dark: #314455;
     height: calc(100% *(1/2) - 10px);
 }
 
+.row {
+  display: block;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
 svg:hover {
   fill: #116466;
 }
