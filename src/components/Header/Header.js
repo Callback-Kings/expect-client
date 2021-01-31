@@ -27,16 +27,17 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+
+  <Navbar bg="primary" variant="dark" expand="md" sticky="top">
     <Navbar.Brand href="#">
-      EXPECT:<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-        width="119.000000pt" height="92.000000pt" viewBox="0 0 119.000000 92.000000"
+      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+        width="100.000000pt" height="92.000000pt" viewBox="0 0 95.000000 92.000000"
         preserveAspectRatio="xMidYMid meet">
         <metadata>
         Created by potrace 1.16, written by Peter Selinger 2001-2019
         </metadata>
         <g transform="translate(0.000000,92.000000) scale(0.100000,-0.100000)"
-          fill="#000000" stroke="none">
+          fill="#FC4445" stroke="none">
           <path d="M403 821 c-111 -41 -191 -121 -234 -231 -31 -80 -24 -213 15 -289 79
         -154 231 -234 399 -211 60 9 155 49 177 75 11 13 -3 15 -109 15 l-121 0 0 290
         0 290 111 0 c94 0 110 2 100 14 -47 56 -241 83 -338 47z"/>
@@ -44,7 +45,7 @@ const Header = ({ user }) => (
         118 3 117 3 25 50 c22 44 25 63 25 160 0 103 -2 113 -30 165 l-30 55 -112 3
         -113 3 0 -86z"/>
         </g>
-      </svg>
+      </svg>XPECT:
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

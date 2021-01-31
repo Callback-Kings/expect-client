@@ -32,20 +32,8 @@ class Tour extends Component {
     super(props)
     // initialize our liked state
     this.state = {
-      liked: false
-    }
-    this.state = {
       show: false
     }
-  }
-
-  toggleLike = () => {
-    // When updating state based on the previous state, we need to pass `this.setState`
-    // an `update` function. Which is guaranteed to always have the most up-to-date
-    // version of `state` and `props`
-    this.setState((state) => {
-      return { liked: !state.liked }
-    })
   }
 
   onCreatePurchase = (event) => {
@@ -87,6 +75,7 @@ class Tour extends Component {
     const { show } = this.state
     const handleClose = () => this.setState({ show: false })
     const handleShow = () => this.setState({ show: true })
+
     return (
       <Container className="tour-cards">
         <Row>
@@ -101,12 +90,6 @@ class Tour extends Component {
                 <ListGroupItem>Price: ${price}</ListGroupItem>
               </ListGroup>
               <Card.Body>
-                <Button
-                  onClick={this.toggleLike}
-                  style={{ marginRight: '35px' }}
-                  variant="primary">
-                  {this.state.liked ? 'Unlike' : 'Like'}
-                </Button>
                 <Button
                   style={{ boxShadow: '2px 2px 2px 2px rgba(0, 0, 0, 0.1)' }}
                   onClick={handleShow}
