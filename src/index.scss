@@ -1,7 +1,11 @@
-$primary: #9D8D8F;
-$variant: #46344E;
-$success: #12C998;
+$primary: #41B3A3;
+$secondary: #E27D60;
+$success: #3AAFA9;
 $danger: #C34271;
+$info: #116466;
+$light: #DEF2F1;
+$dark: #314455;
+
 @import '~bootstrap/scss/bootstrap';
 
 
@@ -11,4 +15,8 @@ $danger: #C34271;
     flex-grow: 1;
     width: calc(100% * (1/4) - 10px - 1px);
     height: calc(100% *(1/2) - 10px);
+}
+
+svg:hover {
+  fill: #116466;
 }
