@@ -3,6 +3,8 @@ import Spinner from 'react-bootstrap/Spinner'
 // import withRouter so we have access to the match route prop
 import { withRouter, Redirect } from 'react-router-dom'
 import { showPurchase } from '../../api/purchase'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Container from 'react-bootstrap/Container'
 
 class ShowPurchase extends Component {
   constructor (props) {
@@ -35,31 +37,10 @@ class ShowPurchase extends Component {
       })
   }
 
-  // handleDelete = event => {
-  //   const { user, msgAlert, match } = this.props
-  //
-  //   // make a delete axios request
-  //   movieDelete(match.params.id, user)
-  //     // set the deleted variable to true, to redirect to the movies page in render
-  //     .then(() => this.setState({ deleted: true }))
-  //     .then(() => msgAlert({
-  //       heading: 'Deleted Movie Successfully!',
-  //       message: 'Movie deleted!',
-  //       variant: 'success'
-  //     }))
-  //     .catch(error => {
-  //       msgAlert({
-  //         heading: 'Deleting Movie Failed',
-  //         message: 'Failed with error: ' + error.message,
-  //         variant: 'danger'
-  //       })
-  //     })
-  // }
-
   render () {
     const { purchase, deleted } = this.state
 
-    // if we don't have a movie yet
+    // if we don't have a purchase yet
     if (!purchase) {
       // A Spinner is just a nice loading message we get from react bootstrap
       return (
@@ -69,23 +50,19 @@ class ShowPurchase extends Component {
       )
     }
 
-    // if the movie is deleted
+    // if the purchase is deleted
     if (deleted) {
-      // redirect to the movies index page
       return <Redirect to="/purchases" />
     }
 
     return (
-      <div>
-        <h3>{purchase.location}</h3>
-        <h4>{purchase.date}</h4>
-        <h4>{purchase.price}</h4>
-        {/* <h4>{purchase.comment}</h4>
-        <button onClick={this.handleDelete}>Delete Movie</button>
-        <button>
-          <Link to={`/purchases/${purchase._id}/edit`}>Update Movie</Link>
-        </button> */}
-      </div>
+      <Jumbotron fluid style={{ boxShadow: '3px 3px 3px 3px rgba(0, 0, 0, 0.1)', marginTop: '20px' }}>
+        <Container style={{ textAlign: 'center' }}>
+          <h2>Location: {purchase.location}</h2>
+          <h5>Date: {purchase.date}</h5>
+          <h6>Price: ${purchase.price}</h6>
+        </Container>
+      </Jumbotron>
     )
   }
 }
