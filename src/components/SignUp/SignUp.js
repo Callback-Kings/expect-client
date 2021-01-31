@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -48,7 +48,7 @@ class SignUp extends Component {
 
   render () {
     const { email, password, passwordConfirmation } = this.state
-
+    const link = <Link to='/sign-in'>Sign in!</Link>
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
@@ -94,6 +94,9 @@ class SignUp extends Component {
               Submit
             </Button>
           </Form>
+          <p>
+            <br />Already have an account? {link}
+          </p>
         </div>
       </div>
     )
