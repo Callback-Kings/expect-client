@@ -10,11 +10,16 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-// import { Link } from 'react-router-dom'
 import { createPurchase } from '../../api/purchase'
+import messages from '../AutoDismissAlert/messages'
+
+import { InjectedCheckoutForm } from '../CheckoutForm/CheckoutForm'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+const stripePromise = loadStripe('pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz')
+// import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import purchases from './../../data/tourData'
-import messages from '../AutoDismissAlert/messages'
 // import { withRouter } from 'react-router-dom'
 
 // const config = {
@@ -27,20 +32,8 @@ class Tour extends Component {
     super(props)
     // initialize our liked state
     this.state = {
-      liked: false
-    }
-    this.state = {
       show: false
     }
-  }
-
-  toggleLike = () => {
-    // When updating state based on the previous state, we need to pass `this.setState`
-    // an `update` function. Which is guaranteed to always have the most up-to-date
-    // version of `state` and `props`
-    this.setState((state) => {
-      return { liked: !state.liked }
-    })
   }
 
   onCreatePurchase = (event) => {
@@ -51,21 +44,29 @@ class Tour extends Component {
       date: this.props.date,
       price: this.props.price
     }
-    createPurchase(user, purchase)
-      .then(() => msgAlert({
-        heading: 'Purchase successful.',
-        message: messages.createPurchaseSuccess,
-        variant: 'success'
-      }))
-      .then(() => history.push('/'))
-      .catch(error => {
-        this.setState({ location: '', date: '', price: '' })
-        msgAlert({
-          heading: 'Purchase Failed with error: ' + error.message,
-          message: messages.createPurchaseFailure,
-          variant: 'danger'
+    if (user) {
+      createPurchase(user, purchase)
+        .then(() => msgAlert({
+          heading: 'Purchase successful.',
+          message: messages.createPurchaseSuccess,
+          variant: 'success'
+        }))
+        .then(() => history.push('/purchases'))
+        .catch(error => {
+          this.setState({ location: '', date: '', price: '' })
+          msgAlert({
+            heading: 'Purchase Failed with error: ' + error.message,
+            message: messages.createPurchaseFailure,
+            variant: 'danger'
+          })
         })
+    } else {
+      history.push('/sign-up')
+      msgAlert({
+        heading: 'Please sign up to book a tour. Already a User? Sign in to Book!',
+        variant: 'danger'
       })
+    }
   }
 
   render () {
@@ -74,6 +75,7 @@ class Tour extends Component {
     const { show } = this.state
     const handleClose = () => this.setState({ show: false })
     const handleShow = () => this.setState({ show: true })
+
     return (
       <Container className="tour-cards">
         <Row>
@@ -89,12 +91,7 @@ class Tour extends Component {
               </ListGroup>
               <Card.Body>
                 <Button
-                  onClick={this.toggleLike}
-                  style={{ marginRight: '35px' }}
-                  variant="primary">
-                  {this.state.liked ? 'Unlike' : 'Like'}
-                </Button>
-                <Button
+                  style={{ boxShadow: '2px 2px 2px 2px rgba(0, 0, 0, 0.1)' }}
                   onClick={handleShow}
                   type="submit"
                   variant="primary">
@@ -113,13 +110,15 @@ class Tour extends Component {
               <div>Date: {date}</div>
               <div>Price: ${price}</div>
             </Modal.Body>
-            <Modal.Body>Click Submit to confirm</Modal.Body>
+            <Modal.Body>
+              <Elements stripe={stripePromise}>
+                <InjectedCheckoutForm />
+              </Elements>
+            </Modal.Body>
+            <Modal.Body>Pay to confirm</Modal.Body>
             {/* <Modal.Footer> */}
             <Button variant="secondary" onClick={handleClose}>
               Close
-            </Button>
-            <Button type="submit" variant="primary" onClick={handleClose}>
-                Submit
             </Button>
           </Form>
           {/* </Modal.Footer> */}
