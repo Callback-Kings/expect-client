@@ -3,9 +3,6 @@ import purchases from './../../data/tourData'
 import Tour from './Tour'
 import { withRouter } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
 // import { BsSearch } from 'react-icons/bs'
 
 const Home = ({ props, user, msgAlert, history }) => (
@@ -27,12 +24,7 @@ const Home = ({ props, user, msgAlert, history }) => (
         118 3 117 3 25 50 c22 44 25 63 25 160 0 103 -2 113 -30 165 l-30 55 -112 3
         -113 3 0 -86z"/>
           </g>
-        </svg>XPECT:</h1>
-      </div>
-    </Form.Group>
-    <Form.Group variant="light" style={{ minWidth: '0', borderRadius: '6px', background: 'rgba(65, 179, 163, 0.9)', boxShadow: '2px 2px 2px 2px rgba(0, 0, 0, 0.1)', border: 'none!important' }}>
-      <div>
-        <h1 style={{ textAlign: 'center', color: 'white' }}>virtual tourism</h1>
+        </svg>XPECT:   virtual tourism company</h1>
       </div>
     </Form.Group>
     <Form.Group variant="light" style={{ minWidth: '0', borderRadius: '6px', background: 'rgba(226, 125, 96, 0.5)', border: 'none!important', marginTop: '70px', marginLeft: '200px', marginRight: '200px' }}>
@@ -65,14 +57,6 @@ const Home = ({ props, user, msgAlert, history }) => (
         </svg>see the world!</h1>
       </div>
     </Form.Group>
-    <InputGroup variant="light" style={{ minWidth: '0', background: 'rgba(254, 255, 255, 0)', boxShadow: '0px 0px 0px 0px rgba(0, 0, 0, 0.1)', border: 'none' }}>
-      <FormControl type="text" placeholder="Where to?" size="lg" />
-      <InputGroup.Append>
-        <Button variant="dark"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>Search</Button>
-      </InputGroup.Append>
-    </InputGroup>
     <Form.Group variant="light" style={{ minWidth: '0', backgroundColor: '#3FEEE6', boxShadow: '0px 2px 0px 0px rgba(0, 0, 0, 0.1)', border: 'none!important' }}>
       <div>
         <h4 style={{ color: '' }}><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
