@@ -79,15 +79,15 @@ class Tour extends Component {
     return (
       <Container className="tour-cards">
         <Row>
-          <CardGroup style={{ background: 'rgba(0,0,0,0)', color: 'white' }}>
-            <Card style={{ background: 'rgba(0,0,0,0)', color: '#FC4445', borderColor: '#41B3A3' }}>
+          <CardGroup style={{ background: '', color: '' }}>
+            <Card style={{ background: 'rgba(255,255,255,0.8)', color: '#FC4445', borderColor: '#41B3A3', fontSize: '30px', fontWeight: 'bold' }}>
               <Card.Img variant="top" src={image} />
               <Card.Body>
-                <Card.Title>{location}</Card.Title>
+                <Card.Title style={{ background: '', color: '#FC4445', borderColor: '#41B3A3', fontSize: '30px' }}>{location}</Card.Title>
               </Card.Body>
-              <ListGroup className="list-group-flush" style={{ background: 'rgba(0,0,0,0)', color: 'white' }}>
-                <ListGroupItem style={{ background: 'rgba(0,0,0,0)', color: '#FC4445' }}>Date: {date}</ListGroupItem>
-                <ListGroupItem style={{ background: 'rgba(0,0,0,0)', color: '#FC4445' }}>Price: ${price}</ListGroupItem>
+              <ListGroup className="list-group-flush" style={{ background: '', color: '' }}>
+                <ListGroupItem style={{ background: 'rgba(255,255,255,0)', color: '#FC4445', fontSize: '25px' }}>Date: {date}</ListGroupItem>
+                <ListGroupItem style={{ background: 'rgba(255,255,255,0)', color: '#FC4445', fontSize: '25px' }}>Price: ${price}</ListGroupItem>
               </ListGroup>
               <Card.Body>
                 <Button

@@ -10,7 +10,7 @@ const image1 = 'https://millionmilesecrets.com/wp-content/uploads/denali-nationa
 
 // const image2 = 'https://www.rei.com/adventures/assets/adventures/images/trip/gallery/northamerica/aza_12'
 const image3 = 'https://wallpapershome.com/images/wallpapers/maldives-3840x2160-5k-4k-wallpaper-8k-indian-ocean-best-beaches-in-5312.jpg'
-// const image4 = 'https://wallpaperaccess.com/full/385708.jpg'
+// const image4 = 'https://www.teahub.io/photos/full/1-12515_3072x1728-top-20-best-4k-ultra-hd-wallpapers.jpg'
 // const image5 = 'https://www.teahub.io/photos/full/1-10160_2560x1440-beautiful-beach-hd-wallpapers-summer-hd.jpg'
 
 const Home = ({ props, user, msgAlert, history }) => (
