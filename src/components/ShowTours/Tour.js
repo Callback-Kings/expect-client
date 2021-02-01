@@ -79,15 +79,15 @@ class Tour extends Component {
     return (
       <Container className="tour-cards">
         <Row>
-          <CardGroup >
-            <Card>
+          <CardGroup style={{ background: 'rgba(0,0,0,0)', color: 'white' }}>
+            <Card style={{ background: 'rgba(0,0,0,0)', color: '#FC4445', borderColor: '#41B3A3' }}>
               <Card.Img variant="top" src={image} />
               <Card.Body>
                 <Card.Title>{location}</Card.Title>
               </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>Date: {date}</ListGroupItem>
-                <ListGroupItem>Price: ${price}</ListGroupItem>
+              <ListGroup className="list-group-flush" style={{ background: 'rgba(0,0,0,0)', color: 'white' }}>
+                <ListGroupItem style={{ background: 'rgba(0,0,0,0)', color: '#FC4445' }}>Date: {date}</ListGroupItem>
+                <ListGroupItem style={{ background: 'rgba(0,0,0,0)', color: '#FC4445' }}>Price: ${price}</ListGroupItem>
               </ListGroup>
               <Card.Body>
                 <Button
