@@ -10,6 +10,7 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import IndexPurchases from './components/IndexPurchases/IndexPurchases'
 import ShowTours from './components/ShowTours/ShowTours'
+import Home from './components/ShowTours/Home'
 // import Tour from './components/ShowTours/Tour'
 // import tours from './data/tourData'
 import UpdatePurchase from './components/UpdatePurchase/UpdatePurchase'
@@ -57,7 +58,7 @@ class App extends Component {
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route exact path='/' render={() => (
-            <ShowTours user={user} msgAlert={this.msgAlert} />
+            <Home user={user} msgAlert={this.msgAlert} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
