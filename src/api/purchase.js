@@ -1,5 +1,32 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+import React from 'react'
+import StripeCheckout from 'react-stripe-checkout'
+
+export default class TakeMoney extends React.Component {
+  onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token)
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`)
+      })
+    })
+  }
+
+  // ...
+
+  render () {
+    return (
+      // ...
+      <StripeCheckout
+        token={this.onToken}
+        stripeKey="pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz"
+      />
+    )
+  }
+}
 
 export const createPurchase = (user, purchase) => {
   return axios({

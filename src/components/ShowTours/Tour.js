@@ -9,14 +9,15 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import { createPurchase } from '../../api/purchase'
 import messages from '../AutoDismissAlert/messages'
+import StripeCheckout from 'react-stripe-checkout'
 
-import { InjectedCheckoutForm } from '../CheckoutForm/CheckoutForm'
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
-const stripePromise = loadStripe('pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz')
+// import { InjectedCheckoutForm } from '../CheckoutForm/CheckoutForm'
+// import { Elements } from '@stripe/react-stripe-js'
+// import { loadStripe } from '@stripe/stripe-js'
+// const stripePromise = loadStripe('pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz')
 // import { Link } from 'react-router-dom'
 // import axios from 'axios'
 // import purchases from './../../data/tourData'
@@ -37,7 +38,7 @@ class Tour extends Component {
   }
 
   onCreatePurchase = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     const { user, msgAlert, history } = this.props
     const purchase = {
       location: this.props.location,
@@ -68,13 +69,40 @@ class Tour extends Component {
       })
     }
   }
+  //
+  // handleClick = async (event) => {
+  //   const stripe = await stripePromise
+  //   const response = await fetch('/create-checkout-session', {
+  //     method: 'POST'
+  //   })
+  //   const session = await response.json()
+  //   // When the customer clicks on the button, redirect them to Checkout.
+  //   const result = await stripe.redirectToCheckout({
+  //     sessionId: session.id
+  //   })
+  //   if (result.error) {
+  //     // If `redirectToCheckout` fails due to a browser or network
+  //     // error, display the localized error message to your customer
+  //     // using `result.error.message`.
+  //   }
+  // }
 
   render () {
     const { image } = this.props
-    const { location, date, price, user } = this.props
+    const { location, date, price, user, msgAlert, history } = this.props
     const { show } = this.state
     const handleClose = () => this.setState({ show: false })
-    const handleShow = () => this.setState({ show: true })
+    const handleShow = () => {
+      if (!user) {
+        history.push('/sign-up')
+        msgAlert({
+          heading: 'Please sign up to book a tour. Already a User? Sign in to Book!',
+          variant: 'danger'
+        })
+      } else {
+        this.setState({ show: true })
+      }
+    }
 
     return (
       <Container className="tour-cards">
@@ -95,32 +123,32 @@ class Tour extends Component {
                   onClick={handleShow}
                   type="submit"
                   variant="primary">
-                  Book Now
+                  Book
                 </Button>
               </Card.Body>
             </Card>
           </CardGroup>
         </Row>
         <Modal show={show} onHide={handleClose}>
-          <Form user={user} onSubmit={this.onCreatePurchase}>
-            <Modal.Header closeButton>
-              <Modal.Title>{location}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div>Date: {date}</div>
-              <div>Price: ${price}</div>
-            </Modal.Body>
-            <Modal.Body>
-              <Elements stripe={stripePromise}>
-                <InjectedCheckoutForm />
-              </Elements>
-            </Modal.Body>
-            <Modal.Body>Pay to confirm</Modal.Body>
-            {/* <Modal.Footer> */}
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-          </Form>
+          {/* <Form user={user} onSubmit={this.onCreatePurchase}> */}
+          <Modal.Header closeButton>
+            <Modal.Title>{location}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>Date: {date}</div>
+            <div>Price: ${price}</div>
+          </Modal.Body>
+          <Modal.Body>
+            <StripeCheckout stripeKey="pk_test_51IF03kIkhqLtNmbJwOU6YIQFW7e45twsNwVBF9jeIEIJV7ftyo7ReWXTPXq8LaZZkZtpB6wGRhQGFfC5M7Kc271w00Ci70YINz"
+              token={this.onCreatePurchase}>
+            </StripeCheckout>
+          </Modal.Body>
+          <Modal.Body>Pay to confirm</Modal.Body>
+          {/* <Modal.Footer> */}
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          {/* </Form> */}
           {/* </Modal.Footer> */}
         </Modal>
       </Container>
