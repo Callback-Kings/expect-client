@@ -5,6 +5,9 @@ export const signUp = credentials => {
   return axios({
     method: 'POST',
     url: apiUrl + '/sign-up',
+    headers: {
+      'Authorization': '*'
+    },
     data: {
       credentials: {
         email: credentials.email,
