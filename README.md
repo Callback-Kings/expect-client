@@ -11,7 +11,11 @@ In a world where travel is drastically changing, Expect rises to the occasion to
 
 ### API Documentation #
 
-[Heroku](https://devcenter.heroku.com/categories/reference)
+[Expect-Api](https://github.com/Callback-Kings/expect-api)
+
+[Expect-Client-Deployed](https://callback-kings.github.io/expect-client/#/)
+
+[Heroku Deployed](https://safe-dawn-20664.herokuapp.com/)
 
 ### Planning and Organization #
 Planning was resourced by the use of morning scrum and a project Kanban board. Agile issues were opened on the team board, and they were assigned to team members to complete.  When a team member had an engineering challenge it would get posted to the project board. Challenges were handled competitively; we collectively worked on the same challenge and the member that engineered the best solution had their code implemented.
