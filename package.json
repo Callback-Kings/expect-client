@@ -1,6 +1,6 @@
 {
-  "name": "react-auth-template",
-  "homepage": "https://Callback-Kings.github.io/expect-client",
+  "name": "expect-client",
+  "homepage": "https://callback-kings.github.io/expect-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
